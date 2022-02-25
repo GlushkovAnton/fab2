@@ -62,7 +62,7 @@ return (
 
   <Modal.Footer>
     <Button variant="secondary" onClick={this.props.onCleanRow.bind(null, this.props.person.id)}>Close</Button>
-    <Button variant="secondary" onClick={this.props.onDelRow.bind(null, this.props.person.id)}>Delete</Button>
+    <Button variant="primary" onClick={this.props.onDelRow.bind(null, this.props.person.id)}>Delete</Button>
     
   </Modal.Footer>
   </Modal>

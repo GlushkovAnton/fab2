@@ -122,7 +122,7 @@ class Add extends React.Component {
   }
   
   checkData (){
-    const reId = /^\d{3,}$/igm;
+    const reId = /^\d{1,}$/igm;
     const reData = /^\d\d[.]\d\d[.]\d\d\d\d[,]\W\d\d[:]\d\d[:]\d\d$/igm;
     const reKiosk = /Киоск\W[№]\W\d/igm;
     const reType = /Продажа$|Возврат$/igm;
@@ -176,14 +176,14 @@ return (
                 <p>Сумма: <input value={this.state.data.Sum} onChange={this.handleChangeSum} ></input> </p>
                 <p>Кол-во товара: <input value={this.state.data.Quantity} onChange={this.handleChangeQuantity} ></input> </p>
                 <p>Товары: <input value={this.state.data.Goods} onChange={this.handleChangeGoods} ></input> </p>
-                <p>{this.state.data.id}</p>
+                
 
                 <div>
-                  { this.state.check ? "Push Save"  : "You was mistake" }
+                  { this.state.check ? "Для добавления нажмите Добавить"  : "Введеные данные не соответствуют формату" }
                 </div>
                  
 
-<Button variant="primary" onClick={this.props.onAdd.bind(null, this.state.data)} >Ok</Button>
+
 
  
   </Modal.Body>
@@ -191,8 +191,8 @@ return (
   <Modal.Footer>
     <Button variant="secondary" onClick={this.handleClick}>Close</Button>
     { this.state.check ? 
-    <Button variant="primary"  onClick={this.props.onAdd.bind(null, this.state.data)} >Save changes</Button>  : 
-    <Button variant="primary" disabled >no Save changes, so sorry</Button> }
+    <Button variant="primary"  onClick={this.props.onAdd.bind(null, this.state.data)} >Добавить</Button>  : 
+    <Button variant="primary" disabled >Неверный формат данных</Button> }
     
   </Modal.Footer>
 

@@ -13,30 +13,21 @@ class App extends React.Component {
   constructor (props){
     super (props);
     this.state ={
+    jsonStatus: false,
     isLoading: true,
     data: [
-      {
-        "id":"001",
-        "Date":"26.02.2020, 18:25:57",
-        "Kiosk":"Киоск № 11",
-        "Type":"Продажа",
-        "Status":"Оплачено",
-        "Pay":"90.50",
-        "Sum":"90.50",
-        "Quantity":"2",
-        "Goods":"Морс клюква из вологодской области"
-      },
-      {
-        "id":"002",
-        "Date":"26.02.2020, 18:30:57",
-        "Kiosk":"Киоск № 11",
-        "Type":"Продажа",
-        "Status":"Оплачено",
-        "Pay":"90.50",
-        "Sum":"90.50",
-        "Quantity":"2",
-        "Goods":"Морс клюква из вологодской области"
-      }
+      //{
+      //  "id":"001",
+      //  "Date":" ",
+      //  "Kiosk":" ",
+      //  "Type":" ",
+      //  "Status":" ",
+      //  "Pay":" ",
+      //  "Sum":" ",
+      //  "Quantity":" ",
+      //  "Goods":" "
+      //},
+      
     ],
     row: null,
     newrow: [{"id":"005"},{"id":"006"}], 
@@ -46,9 +37,14 @@ class App extends React.Component {
   this.onRowSelect = this.onRowSelect.bind(this);
   this.onDelRow = this.onDelRow.bind(this);
   this.onCleanRow = this.onCleanRow.bind(this);
-  this.onJsonTest = this.onJsonTest.bind(this);
-  
+  this.onJsonCreate = this.onJsonCreate.bind(this);
+  this.onSetStatusJson = this.onSetStatusJson.bind(this);
 }
+
+  onSetStatusJson (){
+
+    this.setState({jsonStatus: true})
+  }
 
   onRowSelect = row => (
     //console.log(row)
@@ -90,7 +86,7 @@ class App extends React.Component {
   }
   
 
-  onJsonTest (a) {
+  onJsonCreate (a) {
     let type = ""
     let status = ""
     console.log ("test json:")
@@ -100,6 +96,21 @@ class App extends React.Component {
     console.log(arr.data.cheques.length)
     for (var i = 0; i < arr.data.cheques.length; i++){
           let data = arr.data.cheques[i].dateReg
+            data = String(data)
+            let dataYear = data.slice(0,4)
+            console.log("data:",dataYear)
+            let dataMonth = data.slice(5,7)
+            console.log("data:",dataMonth)
+            let dataDay = data.slice(8,10)
+            console.log("data:",dataDay)
+            let dataHour = data.slice(11,13)
+            console.log("data:",dataHour)
+            let dataMinutes = data.slice(14,16)
+            console.log("data:",dataMinutes)
+            let dataSec = data.slice(17,19)
+            console.log("data:",dataSec)
+            data = dataDay+"."+dataMonth+"."+dataYear+", "+dataHour+":"+dataMinutes+":"+dataSec
+            
           let kiosk = arr.data.cheques[i].kioskName
           let type_num = arr.data.cheques[i].chequeType
           type_num == 0 ?  type ="Продажа" :  type = "Возврат" 
@@ -138,8 +149,9 @@ class App extends React.Component {
           temp.push(addArr)
         }
     console.log ("temp", temp)
-    this.setState({data: temp.map((_arrayElement) => Object.assign({}, _arrayElement)) }) 
+    this.setState({data: temp.map((_arrayElement) => Object.assign({}, _arrayElement)) })
     
+    this.onSetStatusJson()    
 
   }
 
@@ -148,6 +160,9 @@ class App extends React.Component {
   render() {
     return (
       <div >
+      {!this.state.jsonStatus ? <Button onSetStatusJson={this.onSetStatusJson} onClick={this.onJsonCreate.bind(null, 'test')} >
+                    Загрузить данные JSON</Button> : null
+                    }
 
       {this.state.row ? <DetailRowView onDelRow={this.onDelRow} person={this.state.row} onCleanRow={this.onCleanRow}  /> : null} 
        <Table 
@@ -155,9 +170,9 @@ class App extends React.Component {
        onRowSelect={this.onRowSelect} 
        />
       <Edit onAdd={this.onAdd}/>
-      {this.state.newrow[0].id}
-      <Button onClick={this.onJsonTest.bind(null, 'test')} >
-                    Test Json</Button>
+      
+      
+      
        
       </div> 
       

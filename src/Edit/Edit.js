@@ -32,14 +32,12 @@ class Edit extends React.Component {
     render () {
         return (
             <div>
-                <Button onClick={this.props.onAdd.bind(null, 'test')} >
-                    Delete
-                </Button>
+                
                 <Button onClick={this.handleClick} >
-                    Add
+                    Добавить чек
                 </Button>
                 {this.state.show ? <Add onAdd={this.props.onAdd} /> : null}
-                <p>{this.state.newrow}</p>
+                
             </div>
 
             )
