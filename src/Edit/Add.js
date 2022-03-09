@@ -2,6 +2,10 @@ import React, {useState, Component, useEffect} from 'react';
 import { Modal, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { useDispatch } from 'react-redux';
+import { addData } from '../redux/fab2Slice';
+import { connect } from 'react-redux'
+
 
 
 class Add extends React.Component {
@@ -38,10 +42,17 @@ class Add extends React.Component {
 
     this.checkData = this.checkData.bind(this);
     
+    this.handleClickChangeStore = this.handleClickChangeStore.bind(this);
     
   } 
 
   
+
+  handleClickChangeStore() {
+    let data1 = this.state.data
+    this.props.dispatch({ type: 'addData' , action: data1})
+    
+  }
 
   handleClick() {
     this.setState(prevState => ({
@@ -189,10 +200,13 @@ return (
   </Modal.Body>
 
   <Modal.Footer>
+    <Button variant="primary" onClick={this.handleClickChangeStore} >button for redux</Button> 
     <Button variant="secondary" onClick={this.handleClick}>Close</Button>
     { this.state.check ? 
     <Button variant="primary"  onClick={this.props.onAdd.bind(null, this.state.data)} >Добавить</Button>  : 
     <Button variant="primary" disabled >Неверный формат данных</Button> }
+
+    
     
   </Modal.Footer>
 
@@ -207,6 +221,6 @@ return (
 }
 
 }
-export default Add;
+export default connect(null, null)(Add)
 
 //value={id }
