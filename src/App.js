@@ -8,6 +8,9 @@ import Add from './Edit/Add';
 import { Button } from 'react-bootstrap';
 //import Data from 'json./Table/data.json';
 
+import { addData } from './redux/fab2Slice';
+import { connect } from 'react-redux'
+
 
 class App extends React.Component {
   constructor (props){
@@ -39,9 +42,21 @@ class App extends React.Component {
   this.onCleanRow = this.onCleanRow.bind(this);
   this.onJsonCreate = this.onJsonCreate.bind(this);
   this.onSetStatusJson = this.onSetStatusJson.bind(this);
+  this.handleClickChangeStore = this.handleClickChangeStore.bind(this);
 }
 
-  onSetStatusJson (){
+  
+handleClickChangeStore() {
+  //let a1 = this.props.getState()
+  //console.log(a1)
+  //let data1 = this.state.data
+  //console.log(data1)
+  this.props.dispatch(addData(true))
+  
+}
+
+
+onSetStatusJson (){
 
     this.setState({jsonStatus: true})
   }
@@ -67,6 +82,7 @@ class App extends React.Component {
     //console.log(temp)
     this.setState({data: temp.map((_arrayElement) => Object.assign({}, _arrayElement)) }) 
     console.log(this.state.data)
+    this.props.dispatch(addData(temp))
     //temp = []
     //console.log(temp)
 
@@ -150,6 +166,7 @@ class App extends React.Component {
         }
     console.log ("temp", temp)
     this.setState({data: temp.map((_arrayElement) => Object.assign({}, _arrayElement)) })
+    this.props.dispatch(addData(temp))
     
     this.onSetStatusJson()    
 
@@ -171,7 +188,7 @@ class App extends React.Component {
        />
       <Edit onAdd={this.onAdd}/>
       
-      
+      <Button variant="primary" onClick={this.handleClickChangeStore} >button for redux</Button> 
       
        
       </div> 
@@ -180,4 +197,4 @@ class App extends React.Component {
   }
 }
   
-export default App; 
+export default connect(null, null) (App); 

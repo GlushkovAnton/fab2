@@ -2,9 +2,11 @@ import React, {useState, Component, useEffect} from 'react';
 import { Modal, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { useDispatch } from 'react-redux';
+//import { useDispatch , getState } from 'react-redux';
 import { addData } from '../redux/fab2Slice';
 import { connect } from 'react-redux'
+//import store from '../redux/store'; 
+//import { Provider } from 'react-redux';
 
 
 
@@ -49,8 +51,11 @@ class Add extends React.Component {
   
 
   handleClickChangeStore() {
+    //let a1 = this.props.getState()
+    //console.log(a1)
     let data1 = this.state.data
-    this.props.dispatch({ type: 'addData' , action: data1})
+    console.log(data1)
+    this.props.dispatch(addData(data1))
     
   }
 

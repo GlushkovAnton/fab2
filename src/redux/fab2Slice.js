@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const fab2Slice = createSlice({
-	name: 'fab2',
-	initialState: [
+export const fabSlice = createSlice({
+	name: 'fab',
+	initialState: 
 		{
             jsonStatus: false,
+            storeSatus: false,
             isLoading: true,
             data: [
               {
@@ -23,27 +24,31 @@ export const fab2Slice = createSlice({
             row: null,
             newrow: [{"id":"005"},{"id":"006"}], 
           }
-	],
+	,
 	reducers: {
 		addData: (state, action) => {
-			const data = {
-				"id":"044",
-                "Date":"+ ",
-                "Kiosk":" +",
-                "Type":"+ ",
-                "Status":"+ ",
-                "Pay":" +",
-                "Sum":" +",
-                "Quantity":" +",
-                "Goods":" +"
-			};
-			state.data.push(action.data);
+			console.log('reducer!', action)
+      console.log('state_prew:', state)
+      //const data = {
+			//	"id":"044",
+      //          "Date":"+ ",
+      //          "Kiosk":" +",
+      //          "Type":"+ ",
+      //          "Status":"+ ",
+      //          "Pay":" +",
+      //          "Sum":" +",
+      //          "Quantity":" +",
+      //          "Goods":" +"
+			//};
+			state.data.push(action.payload)
+      console.log('state:', state)
+      
 		},
 
 	},
 });
 
 
-export const { addData } = fab2Slice.actions;
+export const { addData } = fabSlice.actions;
 
-export default fab2Slice.reducer;
+export default fabSlice.reducer;
