@@ -5,6 +5,7 @@ export const fabSlice = createSlice({
 	initialState: 
 		{
             jsonStatus: false,
+            test: 'hello redux store',
             storeSatus: false,
             isLoading: true,
             data: [
@@ -40,15 +41,20 @@ export const fabSlice = createSlice({
       //          "Quantity":" +",
       //          "Goods":" +"
 			//};
-			state.data.push(action.payload)
+			state.data = action.payload
       console.log('state:', state)
       
 		},
+    setStoreStatus: (state, action) => {
+      console.log('reducer set store status', action)
+      state.test = 'succes'
+    },
 
 	},
+  
 });
 
 
-export const { addData } = fabSlice.actions;
+export const { addData, setStoreStatus } = fabSlice.actions;
 
 export default fabSlice.reducer;

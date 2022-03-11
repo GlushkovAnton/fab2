@@ -8,7 +8,7 @@ import Add from './Edit/Add';
 import { Button } from 'react-bootstrap';
 //import Data from 'json./Table/data.json';
 
-import { addData } from './redux/fab2Slice';
+import { addData, setStoreStatus } from './redux/fab2Slice';
 import { connect } from 'react-redux'
 
 
@@ -16,6 +16,7 @@ class App extends React.Component {
   constructor (props){
     super (props);
     this.state ={
+    test: 'hello',
     jsonStatus: false,
     isLoading: true,
     data: [
@@ -51,7 +52,7 @@ handleClickChangeStore() {
   //console.log(a1)
   //let data1 = this.state.data
   //console.log(data1)
-  this.props.dispatch(addData(true))
+  this.props.dispatch(setStoreStatus())
   
 }
 
@@ -98,6 +99,7 @@ onSetStatusJson (){
     console.log("new massive:" ,temp)
     this.setState({data: temp.map((_arrayElement) => Object.assign({}, _arrayElement)) }) 
     console.log("new state.data:",this.state.data)
+    this.props.dispatch(addData(temp))
 
   }
   
@@ -177,24 +179,35 @@ onSetStatusJson (){
   render() {
     return (
       <div >
+        
       {!this.state.jsonStatus ? <Button onSetStatusJson={this.onSetStatusJson} onClick={this.onJsonCreate.bind(null, 'test')} >
                     Загрузить данные JSON</Button> : null
                     }
 
       {this.state.row ? <DetailRowView onDelRow={this.onDelRow} person={this.state.row} onCleanRow={this.onCleanRow}  /> : null} 
        <Table 
-       data={this.state.data}
+       //data={this.state.data}
+       data={this.props.fab.data}
        onRowSelect={this.onRowSelect} 
        />
       <Edit onAdd={this.onAdd}/>
+      {
+      //<Button variant="primary" onClick={this.handleClickChangeStore} >button for redux</Button> 
       
-      <Button variant="primary" onClick={this.handleClickChangeStore} >button for redux</Button> 
-      
+      //{!this.props.fab.storeStatu ? <h1>yes</h1> : <h1>no</h1>}
+      //{this.state.test}
+      //{this.props.fab.test}
        
-      </div> 
+      }
+      </div>
+       
       
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { fab: state.fab }
+}
   
-export default connect(null, null) (App); 
+export default connect (mapStateToProps)(App); 

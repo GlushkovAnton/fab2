@@ -205,7 +205,8 @@ return (
   </Modal.Body>
 
   <Modal.Footer>
-    <Button variant="primary" onClick={this.handleClickChangeStore} >button for redux</Button> 
+    {//<Button variant="primary" onClick={this.handleClickChangeStore} >button for redux</Button> 
+    }
     <Button variant="secondary" onClick={this.handleClick}>Close</Button>
     { this.state.check ? 
     <Button variant="primary"  onClick={this.props.onAdd.bind(null, this.state.data)} >Добавить</Button>  : 
