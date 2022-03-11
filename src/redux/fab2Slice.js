@@ -30,17 +30,7 @@ export const fabSlice = createSlice({
 		addData: (state, action) => {
 			console.log('reducer!', action)
       console.log('state_prew:', state)
-      //const data = {
-			//	"id":"044",
-      //          "Date":"+ ",
-      //          "Kiosk":" +",
-      //          "Type":"+ ",
-      //          "Status":"+ ",
-      //          "Pay":" +",
-      //          "Sum":" +",
-      //          "Quantity":" +",
-      //          "Goods":" +"
-			//};
+      
 			state.data = action.payload
       console.log('state:', state)
       

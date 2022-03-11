@@ -19,8 +19,7 @@ class DetailRowView extends React.Component {
   }
   
   handleClick() { 
-    //this.props.show = false
-    //console.log (this.props.show)
+    
     this.setState(prevState => ({
         show: !prevState.show
     }));
@@ -28,21 +27,14 @@ class DetailRowView extends React.Component {
   }
 
 
-  //const [show, setShow] = useState(true);
-
-  //const handleClose = () => setShow(false);
-  //const handleShow = () => setShow(true); 
   
-  //useEffect( () => {
-  //  setShow(true)
-  //});
 
   
 render () {
 return (
   
   
-  //<Modal.Dialog>
+  
   <Modal show={this.state.show} onHide={this.props.onCleanRow.bind(null, this.props.person.id)}>
   <Modal.Header closeButton>
     <Modal.Title>Modal title</Modal.Title>
@@ -66,7 +58,7 @@ return (
     
   </Modal.Footer>
   </Modal>
-//</Modal.Dialog>
+
 
 
 )

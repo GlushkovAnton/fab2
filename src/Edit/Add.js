@@ -2,11 +2,10 @@ import React, {useState, Component, useEffect} from 'react';
 import { Modal, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//import { useDispatch , getState } from 'react-redux';
+
 import { addData } from '../redux/fab2Slice';
 import { connect } from 'react-redux'
-//import store from '../redux/store'; 
-//import { Provider } from 'react-redux';
+
 
 
 
@@ -51,8 +50,7 @@ class Add extends React.Component {
   
 
   handleClickChangeStore() {
-    //let a1 = this.props.getState()
-    //console.log(a1)
+    
     let data1 = this.state.data
     console.log(data1)
     this.props.dispatch(addData(data1))
@@ -158,20 +156,13 @@ class Add extends React.Component {
     && reSum.test(this.state.data.Sum)
     && reQuantity.test(this.state.data.Quantity)
     && reGoods.test(this.state.data.Goods)) ? this.setState({check: true}) :
-    //this.state.data.Date === "002" ? this.setState({check: true}) :
-    //this.state.data.Kiosk === "003" ? this.setState({check: true}) :
-    //this.state.data.Type === "004" ? this.setState({check: true}) :
-    //this.state.data.Status === "005" ? this.setState({check: true}) :
-    //this.state.data.Pay === "006" ? this.setState({check: true}) :
-    //this.state.data.Sum === "007" ? this.setState({check: true}) :
-    //this.state.data.Quantity === "008" ? this.setState({check: true}) :
-    //this.state.data.Goods === "009" ? this.setState({check: true}) :
-        this.setState({check: false}) //this.props.onAdd.bind(null, this.state.data)
+    
+        this.setState({check: false}) 
   }
 
   
 render () {
-  //const id = this.state.data.id;
+  
 return (
   
   <div>
@@ -205,8 +196,7 @@ return (
   </Modal.Body>
 
   <Modal.Footer>
-    {//<Button variant="primary" onClick={this.handleClickChangeStore} >button for redux</Button> 
-    }
+    
     <Button variant="secondary" onClick={this.handleClick}>Close</Button>
     { this.state.check ? 
     <Button variant="primary"  onClick={this.props.onAdd.bind(null, this.state.data)} >Добавить</Button>  : 
@@ -229,4 +219,3 @@ return (
 }
 export default connect(null, null)(Add)
 
-//value={id }

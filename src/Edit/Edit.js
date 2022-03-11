@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
-import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
+
 import Add from './Add';
 
 class Edit extends React.Component {
@@ -23,9 +23,7 @@ class Edit extends React.Component {
         }));
       }
     
-      //onAdd(row){
-      //  this.setState({newrow: row})
-      //}
+      
 
 
 

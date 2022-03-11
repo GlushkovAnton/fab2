@@ -1,12 +1,12 @@
 //https://github.com/rpulatov/react-ant-test
 import React, { Component } from 'react';
-//import Loader from './Loader/Loader';
+
 import Table from './Table/Table';
 import DetailRowView from './DetailRowView/DetailRowView';
 import Edit from './Edit/Edit';
-import Add from './Edit/Add';
+
 import { Button } from 'react-bootstrap';
-//import Data from 'json./Table/data.json';
+
 
 import { addData, setStoreStatus } from './redux/fab2Slice';
 import { connect } from 'react-redux'
@@ -48,10 +48,7 @@ class App extends React.Component {
 
   
 handleClickChangeStore() {
-  //let a1 = this.props.getState()
-  //console.log(a1)
-  //let data1 = this.state.data
-  //console.log(data1)
+  
   this.props.dispatch(setStoreStatus())
   
 }
@@ -63,7 +60,7 @@ onSetStatusJson (){
   }
 
   onRowSelect = row => (
-    //console.log(row)
+    
     this.setState({row})
   )
 
@@ -75,17 +72,17 @@ onSetStatusJson (){
 
   onAdd (a)  {
     console.log(a)
-    //this.state.newrow.concat(a)
+    
     let temp = this.state.data
-    //console.log(temp)
+    
     temp.push(a)
-    //const temp1 = temp.map((_arrayElement) => Object.assign({}, _arrayElement))
-    //console.log(temp)
+    
+    
     this.setState({data: temp.map((_arrayElement) => Object.assign({}, _arrayElement)) }) 
     console.log(this.state.data)
     this.props.dispatch(addData(temp))
-    //temp = []
-    //console.log(temp)
+    
+    
 
   }
 
@@ -186,19 +183,12 @@ onSetStatusJson (){
 
       {this.state.row ? <DetailRowView onDelRow={this.onDelRow} person={this.state.row} onCleanRow={this.onCleanRow}  /> : null} 
        <Table 
-       //data={this.state.data}
+       
        data={this.props.fab.data}
        onRowSelect={this.onRowSelect} 
        />
       <Edit onAdd={this.onAdd}/>
-      {
-      //<Button variant="primary" onClick={this.handleClickChangeStore} >button for redux</Button> 
       
-      //{!this.props.fab.storeStatu ? <h1>yes</h1> : <h1>no</h1>}
-      //{this.state.test}
-      //{this.props.fab.test}
-       
-      }
       </div>
        
       
